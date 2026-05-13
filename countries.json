@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Kazakhstan",
+    "population": 19000000,
+    "capital": "Astana",
+    "year": 1991
+  },
+  {
+    "id": 2,
+    "name": "Germany",
+    "population": 84000000,
+    "capital": "Berlin",
+    "year": 1990
+  },
+  {
+    "id": 3,
+    "name": "Japan",
+    "population": 125000000,
+    "capital": "Tokyo",
+    "year": 660
+  }
+]
