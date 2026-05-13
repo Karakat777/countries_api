@@ -26,5 +26,12 @@
     "population": 2,
     "capital": "symbastana",
     "year": 2008
+  },
+  {
+    "id": 5,
+    "name": "karakatland",
+    "population": 1,
+    "capital": "astanamin",
+    "year": 2007
   }
 ]
