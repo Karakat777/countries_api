@@ -19,5 +19,12 @@
     "population": 125000000,
     "capital": "Tokyo",
     "year": 660
+  },
+  {
+    "id": 4,
+    "name": "karakatstan",
+    "population": 2,
+    "capital": "symbastana",
+    "year": 2008
   }
 ]
