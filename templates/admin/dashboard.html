@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}My Dashboard{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-eyebrow">Welcome back</p>
+    <h1 class="page-title">{{ session.username }}</h1>
+    <p class="page-subtitle">Your personal country archive</p>
+  </div>
+  <div class="page-header-deco">◉</div>
+</div>
+
+<div class="section-divider">
+  <span class="section-divider-text">Add a Country</span>
+</div>
+
+<div class="form-card" style="max-width:100%">
+  <form action="/user/records/add" method="POST" class="inline-form inline-form--grid">
+    <div class="field-group">
+      <label class="field-label">Country Name</label>
+      <input class="field-input" type="text" name="name" placeholder="e.g. France" required>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Capital</label>
+      <input class="field-input" type="text" name="capital" placeholder="e.g. Paris" required>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Population</label>
+      <input class="field-input" type="number" name="population" placeholder="e.g. 68000000" required min="1">
+    </div>
+    <div class="field-group">
+      <label class="field-label">Founded (Year)</label>
+      <input class="field-input" type="number" name="year" placeholder="e.g. 843" required>
+    </div>
+    <button type="submit" class="btn-primary btn-span">Add to Archive →</button>
+  </form>
+</div>
+
+<div class="section-divider">
+  <span class="section-divider-text">My Countries ({{ records|length }})</span>
+</div>
+
+{% if records %}
+<div class="cards-grid">
+  {% for r in records %}
+  <div class="country-card">
+    <div class="country-card-header">
+      <span class="country-card-id">№{{ r.id }}</span>
+      <span class="country-card-year">Est. {{ r.year }}</span>
+    </div>
+    <h3 class="country-card-name">{{ r.name }}</h3>
+    <p class="country-card-capital">◎ {{ r.capital }}</p>
+    <p class="country-card-pop">{{ "{:,}".format(r.population) }} people</p>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state-block">
+  <span class="empty-icon">◈</span>
+  <p>Your archive is empty. Add your first country above.</p>
+</div>
+{% endif %}
+{% endblock %}

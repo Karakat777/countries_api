@@ -1,23 +1,12 @@
 REQUIRED_FIELDS = ["name", "population", "capital", "year"]
 
 
-def validate_country(data, partial=False):
+def validate_country(data: dict, partial: bool = False) -> str | None:
     """
-    Validate a dictionary of country field values.
-
-    Parameters:
-        data    (dict) — the JSON body received from the client
-        partial (bool) — if True, skip "required field" checks (used by PUT
-                         so that clients can update just one field at a time)
-
-    Returns:
-        str | None — an error message string if validation fails,
-                     or None if all provided values are acceptable.
-
-    Task 3 (POST): partial=False  → checks both presence and value rules
-    Task 4 (PUT):  partial=True   → checks only value rules for sent fields
+    partial=False → POST (все поля обязательны)
+    partial=True  → PUT  (проверяем только переданные поля)
+    Возвращает строку-ошибку или None если всё ок.
     """
-
     if not partial:
         for field in REQUIRED_FIELDS:
             if field not in data:

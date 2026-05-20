@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-eyebrow">Administration</p>
+    <h1 class="page-title">Dashboard</h1>
+    <p class="page-subtitle">Overview of the Countries Archive system</p>
+  </div>
+  <div class="page-header-deco">◈</div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card">
+    <span class="stat-num">{{ total_users }}</span>
+    <span class="stat-label">Total Users</span>
+    <div class="stat-bar"></div>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num">{{ total_records }}</span>
+    <span class="stat-label">Country Records</span>
+    <div class="stat-bar"></div>
+  </div>
+  <div class="stat-card">
+    <span class="stat-num">2</span>
+    <span class="stat-label">Roles Active</span>
+    <div class="stat-bar"></div>
+  </div>
+</div>
+
+<div class="section-divider">
+  <span class="section-divider-text">Recent Registrations</span>
+</div>
+
+<div class="recent-list">
+  {% for user in recent %}
+  <div class="recent-item">
+    <div class="recent-avatar">{{ user.username[0].upper() }}</div>
+    <div class="recent-info">
+      <span class="recent-name">{{ user.username }}</span>
+      <span class="recent-meta">{{ user.role }} · joined {{ user.created_at[:10] }}</span>
+    </div>
+    <div class="recent-role-badge recent-role-badge--{{ user.role }}">{{ user.role }}</div>
+  </div>
+  {% else %}
+  <p class="empty-state">No users yet.</p>
+  {% endfor %}
+</div>
+
+<div class="section-divider">
+  <span class="section-divider-text">Quick Access</span>
+</div>
+
+<div class="admin-actions">
+  <a href="/admin/users" class="action-card">
+    <span class="action-icon">◎</span>
+    <span class="action-label">Manage Users</span>
+    <span class="action-arrow">→</span>
+  </a>
+  <a href="/admin/data" class="action-card">
+    <span class="action-icon">◉</span>
+    <span class="action-label">All Country Records</span>
+    <span class="action-arrow">→</span>
+  </a>
+</div>
+{% endblock %}

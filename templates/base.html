@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}App{% endblock %} | CountriesApp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="app-layout {% if not session.get('user_id') %}auth-mode{% endif %}">
+
+        {% if session.get('user_id') %}
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-brand">
+                    <span class="sidebar-brand-icon">🌍</span>
+                    <span class="sidebar-brand-text">CountriesApp</span>
+                </div>
+                <div class="sidebar-tagline">World Archive</div>
+            </div>
+
+            <nav class="sidebar-nav">
+                {% if session.get('role') == 'admin' %}
+                    <span class="nav-section-label">Administration</span>
+                    <a href="/admin/dashboard" class="nav-link">
+                        <span class="nav-icon">📊</span> Dashboard
+                    </a>
+                    <a href="/admin/users" class="nav-link">
+                        <span class="nav-icon">👥</span> Manage Users
+                    </a>
+                    <a href="/admin/data" class="nav-link">
+                        <span class="nav-icon">📂</span> All Records
+                    </a>
+                {% else %}
+                    <span class="nav-section-label">Navigation</span>
+                    <a href="/user/dashboard" class="nav-link">
+                        <span class="nav-icon">🏠</span> My Dashboard
+                    </a>
+                    <a href="/user/profile" class="nav-link">
+                        <span class="nav-icon">👤</span> My Profile
+                    </a>
+                {% endif %}
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-card">
+                    <div class="user-avatar">{{ session.get('username', '?')[0]|upper }}</div>
+                    <div class="user-details">
+                        <span class="user-name">@{{ session.get('username') }}</span>
+                        <span class="user-role">{{ session.get('role')|capitalize }}</span>
+                    </div>
+                </div>
+                <a href="/logout" class="btn-logout">🚪 Sign Out</a>
+            </div>
+        </aside>
+        {% endif %}
+
+        <main class="main-content">
+            <div class="flash-messages">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}">
+                          {% if category == 'success' %}✓{% elif category == 'error' %}✕{% else %}ℹ{% endif %}
+                          {{ message }}
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endwith %}
+            </div>
+
+            <div class="content-wrapper">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

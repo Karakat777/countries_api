@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="auth-layout">
+
+  <div class="auth-editorial">
+    <div class="auth-globe-deco"></div>
+    <div class="auth-eyebrow-deco">
+      <span class="auth-eyebrow-line"></span>
+      <span class="auth-eyebrow-text">Join the Community</span>
+    </div>
+    <p class="auth-tagline">Join the community<br><em>of curious minds.</em></p>
+    <div class="auth-deco-line"></div>
+    <p class="auth-sub">Create an account to save, manage, and explore country records from across the globe.</p>
+    <div class="auth-stats">
+      <div class="auth-stat">
+        <span class="auth-stat-num">Free</span>
+        <span class="auth-stat-label">Always</span>
+      </div>
+      <div class="auth-stat">
+        <span class="auth-stat-num">Open</span>
+        <span class="auth-stat-label">Archive</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-form-wrap">
+    <div class="auth-header">
+      <p class="auth-eyebrow">Create Account</p>
+      <h1 class="auth-title">Register</h1>
+    </div>
+
+    <form id="register-form" action="/register" method="POST" class="auth-form" novalidate>
+      <div class="field-group">
+        <label class="field-label" for="username">Choose a Username</label>
+        <input class="field-input" type="text" id="username" name="username"
+               placeholder="min 3 characters" autocomplete="username" required>
+        <span class="field-hint">At least 3 characters</span>
+        <span class="field-error" id="username-error"></span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="password">Choose a Password</label>
+        <input class="field-input" type="password" id="password" name="password"
+               placeholder="min 6 characters" autocomplete="new-password" required>
+        <span class="field-hint">At least 6 characters</span>
+        <span class="field-error" id="password-error"></span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="telegram_id">
+          Telegram ID <span style="font-weight:400;color:var(--text-light)">(Optional)</span>
+        </label>
+        <input class="field-input" type="text" id="telegram_id" name="telegram_id"
+               placeholder="Get it from /start in Telegram Bot" autocomplete="off">
+        <span class="field-hint">Enter your ID to enable Telegram Bot features</span>
+      </div>
+
+      <button type="submit" class="btn-primary">Create Account →</button>
+    </form>
+
+    <p class="auth-switch">Already have an account? <a href="/login" class="auth-switch-link">Sign in</a></p>
+  </div>
+
+</div>
+{% endblock %}

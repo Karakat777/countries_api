@@ -4,34 +4,31 @@
     "name": "Kazakhstan",
     "population": 19000000,
     "capital": "Astana",
-    "year": 1991
+    "year": 1991,
+    "user_id": "1"
   },
   {
     "id": 2,
     "name": "Germany",
     "population": 84000000,
     "capital": "Berlin",
-    "year": 1990
+    "year": 1990,
+    "user_id": "1"
   },
   {
     "id": 3,
     "name": "Japan",
     "population": 125000000,
     "capital": "Tokyo",
-    "year": 660
+    "year": 660,
+    "user_id": "2"
   },
   {
-    "id": 4,
-    "name": "karakatstan",
-    "population": 2,
-    "capital": "symbastana",
-    "year": 2008
-  },
-  {
-    "id": 5,
-    "name": "karakatland",
-    "population": 1,
-    "capital": "astanamin",
-    "year": 2007
+    "id": 6,
+    "name": "admin",
+    "population": 32,
+    "capital": "admin",
+    "year": 3223,
+    "user_id": "1"
   }
 ]

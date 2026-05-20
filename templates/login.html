@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+<div class="auth-layout">
+
+  <div class="auth-editorial">
+    <div class="auth-globe-deco"></div>
+    <div class="auth-eyebrow-deco">
+      <span class="auth-eyebrow-line"></span>
+      <span class="auth-eyebrow-text">Est. 2024</span>
+    </div>
+    <p class="auth-tagline">Documenting the world,<br><em>one country at a time.</em></p>
+    <div class="auth-deco-line"></div>
+    <p class="auth-sub">A curated archive of nations, capitals, and histories. Sign in to explore and contribute.</p>
+    <div class="auth-stats">
+      <div class="auth-stat">
+        <span class="auth-stat-num">195</span>
+        <span class="auth-stat-label">Countries</span>
+      </div>
+      <div class="auth-stat">
+        <span class="auth-stat-num">∞</span>
+        <span class="auth-stat-label">Stories</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-form-wrap">
+    <div class="auth-header">
+      <p class="auth-eyebrow">Access the Archive</p>
+      <h1 class="auth-title">Sign In</h1>
+    </div>
+
+    <form id="login-form" action="/login" method="POST" class="auth-form" novalidate>
+      <div class="field-group">
+        <label class="field-label" for="username">Username</label>
+        <input class="field-input" type="text" id="username" name="username"
+               placeholder="your_username" autocomplete="username" required>
+        <span class="field-error" id="username-error"></span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="password">Password</label>
+        <input class="field-input" type="password" id="password" name="password"
+               placeholder="••••••••" autocomplete="current-password" required>
+        <span class="field-error" id="password-error"></span>
+      </div>
+
+      <button type="submit" class="btn-primary">Enter the Archive →</button>
+    </form>
+
+    <p class="auth-switch">No account? <a href="/register" class="auth-switch-link">Register here</a></p>
+  </div>
+
+</div>
+{% endblock %}

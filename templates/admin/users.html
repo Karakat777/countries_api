@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Users{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-eyebrow">Administration</p>
+    <h1 class="page-title">Users</h1>
+    <p class="page-subtitle">All registered members of the Archive</p>
+  </div>
+  <a href="/admin/users/create" class="btn-primary btn-small">+ Add User</a>
+</div>
+
+<div class="search-bar-wrap">
+  <input type="text" id="user-search" class="search-input" placeholder="Search by username…">
+  <span class="search-icon">⌕</span>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table" id="users-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Joined</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="users-table-body">
+      {% for user in users %}
+      <tr class="table-row" data-username="{{ user.username }}">
+        <td class="td-id">{{ user.id }}</td>
+        <td class="td-name">
+          <div class="user-cell">
+            <div class="user-avatar">{{ user.username[0].upper() }}</div>
+            {{ user.username }}
+          </div>
+        </td>
+        <td><span class="role-pill role-pill--{{ user.role }}">{{ user.role }}</span></td>
+        <td class="td-meta">{{ user.created_at[:10] if user.created_at else '—' }}</td>
+        <td>
+          <form action="/admin/users/delete/{{ user.id }}" method="POST" style="display:inline">
+            <button type="submit" class="btn-delete delete-btn" title="Delete user">✕</button>
+          </form>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="5" class="empty-state">No users found.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="section-divider" style="margin-top:3rem">
+  <span class="section-divider-text">Create New User</span>
+</div>
+
+<div class="form-card">
+  <form action="/admin/users/create" method="POST" class="inline-form">
+    <div class="field-group">
+      <label class="field-label">Username</label>
+      <input class="field-input" type="text" name="username" placeholder="username" required>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Password</label>
+      <input class="field-input" type="password" name="password" placeholder="••••••••" required>
+    </div>
+    <div class="field-group">
+      <label class="field-label">Role</label>
+      <select class="field-input" name="role">
+        <option value="user">user</option>
+        <option value="admin">admin</option>
+      </select>
+    </div>
+    <div style="display:flex;align-items:flex-end">
+      <button type="submit" class="btn-primary btn-small" style="width:auto">Create →</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

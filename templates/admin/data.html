@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}All Records{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-eyebrow">Administration</p>
+    <h1 class="page-title">Country Records</h1>
+    <p class="page-subtitle">All entries across all users — page {{ page }} of {{ total_pages }}</p>
+  </div>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Country</th>
+        <th>Capital</th>
+        <th>Population</th>
+        <th>Est.</th>
+        <th>Owner</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in records %}
+      <tr class="table-row">
+        <td class="td-id">{{ r.id }}</td>
+        <td class="td-name country-name">{{ r.name }}</td>
+        <td class="td-meta">{{ r.capital }}</td>
+        <td class="td-meta">{{ "{:,}".format(r.population) }}</td>
+        <td class="td-meta">{{ r.year }}</td>
+        <td><span class="owner-pill">{{ r.user_id or '—' }}</span></td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6" class="empty-state">No records yet.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<div class="pagination">
+  {% if page > 1 %}
+    <a href="/admin/data?page={{ page - 1 }}" class="page-btn">← Prev</a>
+  {% endif %}
+  <span class="page-info">{{ page }} / {{ total_pages }}</span>
+  {% if page < total_pages %}
+    <a href="/admin/data?page={{ page + 1 }}" class="page-btn">Next →</a>
+  {% endif %}
+</div>
+{% endblock %}

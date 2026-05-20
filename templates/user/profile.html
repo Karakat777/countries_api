@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div class="page-header-inner">
+    <p class="page-eyebrow">Account</p>
+    <h1 class="page-title">My Profile</h1>
+    <p class="page-subtitle">Manage your account details</p>
+  </div>
+</div>
+
+<div class="profile-card">
+  <div class="profile-avatar">{{ user.username[0].upper() }}</div>
+  <div class="profile-meta">
+    <span class="profile-name">{{ user.username }}</span>
+    <span class="profile-detail">Role: {{ user.role }}</span>
+    <span class="profile-detail">Member since: {{ user.created_at[:10] if user.created_at else '—' }}</span>
+    <span class="profile-detail">Countries saved: {{ record_count }}</span>
+  </div>
+</div>
+
+<div class="section-divider">
+  <span class="section-divider-text">Change Password</span>
+</div>
+
+<div class="form-card">
+  <form action="/user/profile" method="POST" class="inline-form" style="grid-template-columns:1fr auto;align-items:flex-end">
+    <div class="field-group" style="margin-bottom:0">
+      <label class="field-label">New Password</label>
+      <input class="field-input" type="password" name="password"
+             placeholder="min 6 characters" required>
+      <span class="field-hint">At least 6 characters</span>
+    </div>
+    <button type="submit" class="btn-primary" style="width:auto;white-space:nowrap">Update Password →</button>
+  </form>
+</div>
+{% endblock %}
